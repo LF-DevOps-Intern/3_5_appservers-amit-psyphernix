@@ -1,6 +1,6 @@
-1.
+1. **GlassFish**
 
-- **Installing Glassfish 6:**
+- **Installing Glassfish 6 and changing port to 8088:**
 
         $ sudo apt update
         $ sudo apt install openjdk-11-jdk
@@ -41,3 +41,32 @@ Contents of glassfish.service
         $ sudo apt install maven
         $ sudo update-alternatives --config java
         $ mvn archetype:generate -DgroupId=psyphernix.io -DartifactId=HelloWorldTest -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+        $ sudo nano /home/psyphernix/HelloWorldTest/pom.xml
+        $ 
+        
+- **Generating war package:**
+        
+        $ 
+        
+- **Deploying war using glassfish server:**
+
+        $
+        
+2. **Gunicorn**
+
+- **Creating Django starter project in a separate virtual environment:**
+
+        $
+        
+- **Deploying three instances of gunicorn in port 8089:**
+
+        $
+        
+- **Dumping access log in a file in non-default pattern:**
+
+        $
+        
+- **Dumping error log in a file:**
+
+        $
+
