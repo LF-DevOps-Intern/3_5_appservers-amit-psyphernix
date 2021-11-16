@@ -12,7 +12,7 @@
         $ sudo systemctl daemon-reload
         $ sudo systemctl enable glassfish
         $ sudo systemctl start glassfish
-        $ /opt/glassfish6/bin/asadmin enable-secure-admin
+        $ sudo /opt/glassfish6/bin/asadmin enable-secure-admin
         $ export PATH=/opt/glassfish6/bin:$PATH
     
 Contents of glassfish.service
