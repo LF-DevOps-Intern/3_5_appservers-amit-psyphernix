@@ -16,17 +16,17 @@
         $ sudo export PATH=/opt/glassfish6.2.2/bin:$PATH
     
 Contents of glassfish.service
-    [Unit]
-    Description = GlassFish Server v6.2.2
-    After = syslog.target network.target
+        [Unit]
+        Description = GlassFish Server v6.2.2
+        After = syslog.target network.target
 
-    [Service]
-    ExecStart=/opt/glassfish6.2.2/bin/asadmin start-domain
-    ExecReload=/opt/glassfish6.2.2/bin/asadmin restart-domain
-    ExecStop=/opt/glassfish6.2.2/bin/asadmin stop-domain
-    Type = forking
+        [Service]
+        ExecStart=/opt/glassfish6.2.2/bin/asadmin start-domain
+        ExecReload=/opt/glassfish6.2.2/bin/asadmin restart-domain
+        ExecStop=/opt/glassfish6.2.2/bin/asadmin stop-domain
+        Type = forking
 
-    [Install]
-    WantedBy = multi-user.target
+        [Install]
+        WantedBy = multi-user.target
     
 - **Creating a demo Java 11 Servelet application with Maven:**
