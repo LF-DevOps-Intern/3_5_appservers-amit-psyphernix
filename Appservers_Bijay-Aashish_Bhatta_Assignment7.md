@@ -56,11 +56,16 @@ Contents of glassfish.service
 
 - **Creating Django starter project in a separate virtual environment:**
 
-        $
+        $ sudo python3 -m venv Djangunicorn
+        $ source Djangunicorn/bin/activate
+        $ sudo python3 -m pip install django
+        $ django-admin startproject djangoatleapfrog
+        $ sudo nano /home/psyphernix/djangoatleapfrog/djangoatleapfrog/settings.py
         
 - **Deploying three instances of gunicorn in port 8089:**
 
-        $
+        $ sudo apt install gunicorn
+        $ 
         
 - **Dumping access log in a file in non-default pattern:**
 
