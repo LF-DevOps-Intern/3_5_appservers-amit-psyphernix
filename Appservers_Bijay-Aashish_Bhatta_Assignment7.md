@@ -50,7 +50,7 @@ Contents of glassfish.service
 
         $ sudo /opt/glassfish6/bin/asadmin deploy /home/psyphernix/HelloWorldTest/target/HelloWorldTest.war
         
- ***Note: All snapshots related to Maven are in [1. Maven](/1. Maven/).***
+ ***Note: All snapshots related to Maven are in [1. Maven](/1.%20Maven/).***
         
 2. **Gunicorn**
 
