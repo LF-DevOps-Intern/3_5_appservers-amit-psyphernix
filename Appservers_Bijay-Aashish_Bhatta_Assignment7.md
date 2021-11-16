@@ -41,16 +41,14 @@ Contents of glassfish.service
         $ sudo apt install maven
         $ sudo update-alternatives --config java
         $ mvn archetype:generate -DgroupId=psyphernix.io -DartifactId=HelloWorldTest -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
-        $ sudo nano /home/psyphernix/HelloWorldTest/pom.xml
-        $ 
         
 - **Generating war package:**
         
-        $ 
+        $ sudo mvn compile war:war
         
 - **Deploying war using glassfish server:**
 
-        $
+        $ sudo /opt/glassfish6/bin/asadmin deploy /home/psyphernix/HelloWorldTest/target/HelloWorldTest.war
         
 2. **Gunicorn**
 
