@@ -16,6 +16,7 @@
         $ sudo export PATH=/opt/glassfish6.2.2/bin:$PATH
     
 Contents of glassfish.service
+
         [Unit]
         Description = GlassFish Server v6.2.2
         After = syslog.target network.target
