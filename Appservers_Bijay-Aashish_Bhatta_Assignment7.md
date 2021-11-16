@@ -58,18 +58,39 @@ Contents of glassfish.service
 
         $ sudo python3 -m venv Djangunicorn
         $ source Djangunicorn/bin/activate
-        $ sudo python3 -m pip install django
+        $ sudo /home/psyphernix/Djangunicorn/bin/python3 -m pip install django
         $ django-admin startproject djangoatleapfrog
         $ sudo nano /home/psyphernix/djangoatleapfrog/djangoatleapfrog/settings.py
         
 - **Deploying three instances of gunicorn in port 8089:**
 
         $ sudo apt install gunicorn
+        $ sudo /home/psyphernix/Djangunicorn/bin/python3 -m pip install gunicorn
+        $ sudo vim /etc/systemd/system/gunicorn.service
+        $ sudo ufw allow 8089
+        $ python3 manage.py makemigrations
+        $ python3 manage.py migrate
         $ 
+      
+ Contents for gunicorn.service:
         
+        [Unit]
+        Description=gunicorn daemon
+        After=network.target
+
+        [Service]
+        User=psyphernix
+        Group=psyphernix
+        WorkingDirectory=/home/psyphernix/djangoatleapfrog/firstapp/
+
+        ExecStart=/home/psyphernix/Djangunicorn/bin/gunicorn --workers 3 --bind 127.0.0.1:8089 kb.wsgi:application
+
+        [Install]
+        WantedBy=multi-user.target`
+ 
 - **Dumping access log in a file in non-default pattern:**
 
-        $
+        $ 
         
 - **Dumping error log in a file:**
 
