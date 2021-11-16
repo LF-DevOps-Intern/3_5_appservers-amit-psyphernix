@@ -16,6 +16,10 @@
         $ export PATH=/opt/glassfish6/bin:$PATH
         $ sudo ufw allow 4848
         $ sudo ufw allow 8080
+        $ sudo nano /opt/glassfish6/glassfish/domains/domain1/config/domain.xml
+        $ sudo ufw deny 8080
+        $ sudo ufw allow 8088
+        $ sudo systemctl restart glassfish.service
     
 Contents of glassfish.service
 
@@ -33,5 +37,7 @@ Contents of glassfish.service
         WantedBy = multi-user.target
     
 - **Creating a demo Java 11 Servelet application with Maven:**
+
         $ sudo apt install maven
-        $ 
+        $ sudo update-alternatives --config java
+        $ mvn archetype:generate -DgroupId=psyphernix.io -DartifactId=HelloWorldTest -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
