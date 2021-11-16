@@ -1,6 +1,7 @@
 1.
 
 -**Installing Glassfish 6:**
+
     $ sudo apt update
     $ sudo apt install openjdk-11-jdk
     $ wget https://github.com/eclipse-ee4j/glassfish/releases/download/6.2.2/glassfish-6.2.2.zip
