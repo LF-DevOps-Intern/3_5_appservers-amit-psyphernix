@@ -22,9 +22,9 @@ Contents of glassfish.service
         After = syslog.target network.target
 
         [Service]
-        ExecStart=/opt/glassfish6.2.2/bin/asadmin start-domain
-        ExecReload=/opt/glassfish6.2.2/bin/asadmin restart-domain
-        ExecStop=/opt/glassfish6.2.2/bin/asadmin stop-domain
+        ExecStart=/opt/glassfish6/bin/asadmin start-domain
+        ExecReload=/opt/glassfish6/bin/asadmin restart-domain
+        ExecStop=/opt/glassfish6/bin/asadmin stop-domain
         Type = forking
 
         [Install]
