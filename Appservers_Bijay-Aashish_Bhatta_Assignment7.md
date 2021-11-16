@@ -1,6 +1,6 @@
 1.
 
--**Installing Glassfish 6:**
+- **Installing Glassfish 6:**
 
     $ sudo apt update
     $ sudo apt install openjdk-11-jdk
