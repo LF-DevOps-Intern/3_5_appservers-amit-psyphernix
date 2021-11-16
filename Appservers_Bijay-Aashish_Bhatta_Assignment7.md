@@ -14,6 +14,8 @@
         $ sudo systemctl start glassfish
         $ sudo /opt/glassfish6/bin/asadmin enable-secure-admin
         $ export PATH=/opt/glassfish6/bin:$PATH
+        $ sudo ufw allow 4848
+        $ sudo ufw allow 8080
     
 Contents of glassfish.service
 
@@ -31,3 +33,5 @@ Contents of glassfish.service
         WantedBy = multi-user.target
     
 - **Creating a demo Java 11 Servelet application with Maven:**
+        $ sudo apt install maven
+        $ 
