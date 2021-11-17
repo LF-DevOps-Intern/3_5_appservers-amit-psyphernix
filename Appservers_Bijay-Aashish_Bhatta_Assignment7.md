@@ -58,35 +58,51 @@ Contents of glassfish.service
 
         $ sudo python3 -m venv Djangunicorn
         $ source Djangunicorn/bin/activate
-        $ sudo /home/psyphernix/Djangunicorn/bin/python3 -m pip install django
+        $ sudo /home/psyphernix/webapp/Djangunicorn/bin/python3 -m pip install django
         $ django-admin startproject djangoatleapfrog
-        $ sudo nano /home/psyphernix/djangoatleapfrog/djangoatleapfrog/settings.py
+        $ sudo /home/psyphernix/webapp/Djanunicorn/bin/python3 manage.py startapp webapp
+        $ sudo nano /home/psyphernix/webapp/djangoatleapfrog/djangoatleapfrog/settings.py
         
 - **Deploying three instances of gunicorn in port 8089:**
 
         $ sudo apt install gunicorn
-        $ sudo /home/psyphernix/Djangunicorn/bin/python3 -m pip install gunicorn
+        $ sudo /home/psyphernix/webapp/Djangunicorn/bin/python3 -m pip install gunicorn
         $ sudo vim /etc/systemd/system/gunicorn.service
+        $ sudo vim /etc/systemd/system/gunicorn.socket
         $ sudo ufw allow 8089
         $ python3 manage.py makemigrations
         $ python3 manage.py migrate
-        $ 
+        
       
  Contents for gunicorn.service:
         
         [Unit]
         Description=gunicorn daemon
-        After=network.target
+        Requires=gunicorn.socket
+        After=network.target[Unit]
 
         [Service]
+        Type=notify
+        # the specific user that our service will run as
         User=psyphernix
         Group=psyphernix
-        WorkingDirectory=/home/psyphernix/djangoatleapfrog/firstapp/
-
-        ExecStart=/home/psyphernix/Djangunicorn/bin/gunicorn --workers 3 --bind 127.0.0.1:8089 kb.wsgi:application
+        # another option for an even more restricted service is
+        # DynamicUser=yes
+        # see http://0pointer.net/blog/dynamic-users-with-systemd.html
+        RuntimeDirectory=gunicorn
+        WorkingDirectory=/home/psyphernix/webapp/djangoatleapfrog/webapp/
+        ExecStart=/home/psyphernix/webapp/Djangunicorn/bin/gunicorn webapp.wsgi
+        ExecReload=/bin/kill -s HUP $MAINPID
+        KillMode=mixed
+        TimeoutStopSec=5
+        PrivateTmp=true
 
         [Install]
-        WantedBy=multi-user.target`
+        WantedBy=multi-user.target
+       
+Contents for gunicorn.socket:
+
+        
  
 - **Dumping access log in a file in non-default pattern:**
 
