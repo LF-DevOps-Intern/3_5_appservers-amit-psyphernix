@@ -56,59 +56,29 @@ Contents of glassfish.service
 
 - **Creating Django starter project in a separate virtual environment:**
 
-        $ sudo python3 -m venv Djangunicorn
-        $ source Djangunicorn/bin/activate
-        $ sudo /home/psyphernix/webapp/Djangunicorn/bin/python3 -m pip install django
-        $ django-admin startproject djangoatleapfrog
-        $ sudo /home/psyphernix/webapp/Djanunicorn/bin/python3 manage.py startapp webapp
-        $ sudo nano /home/psyphernix/webapp/djangoatleapfrog/djangoatleapfrog/settings.py
+        $ python3.9 -m venv webapp
+        $ source webapp/bin/activate
+        $ sudo python3.9 -m pip install django
+        $ sudo python3.9 -m pip install gunicorn
+        $ django-admin startproject webapp
+        $ python3.9 manage.py startapp firstapp
         
 - **Deploying three instances of gunicorn in port 8089:**
 
-        $ sudo apt install gunicorn
-        $ sudo /home/psyphernix/webapp/Djangunicorn/bin/python3 -m pip install gunicorn
-        $ sudo vim /etc/systemd/system/gunicorn.service
-        $ sudo vim /etc/systemd/system/gunicorn.socket
-        $ sudo ufw allow 8089
-        $ python3 manage.py makemigrations
-        $ python3 manage.py migrate
+        $ sudo vim /home/psyphernix/webapp/webapp/webapp/settings.py
+        $ sudo firewall-cmd --permanent --add-port=8089/tcp
+        $ sudo firewall-cmd --reload
+        $ python3.9 manage.py makemigrations
+        $ python3.9 manage.py migrate
+        $ python3.9 manage.py
+        $ python3.9 -m gunicorn webapp.wsgi:application --workers 3 -b 127.0.0.1:8089
         
-      
- Contents for gunicorn.service:
-        
-        [Unit]
-        Description=gunicorn daemon
-        Requires=gunicorn.socket
-        After=network.target[Unit]
-
-        [Service]
-        Type=notify
-        # the specific user that our service will run as
-        User=psyphernix
-        Group=psyphernix
-        # another option for an even more restricted service is
-        # DynamicUser=yes
-        # see http://0pointer.net/blog/dynamic-users-with-systemd.html
-        RuntimeDirectory=gunicorn
-        WorkingDirectory=/home/psyphernix/webapp/djangoatleapfrog/webapp/
-        ExecStart=/home/psyphernix/webapp/Djangunicorn/bin/gunicorn webapp.wsgi
-        ExecReload=/bin/kill -s HUP $MAINPID
-        KillMode=mixed
-        TimeoutStopSec=5
-        PrivateTmp=true
-
-        [Install]
-        WantedBy=multi-user.target
-       
-Contents for gunicorn.socket:
-
-        
- 
 - **Dumping access log in a file in non-default pattern:**
 
-        $ 
+        $ python3.9 -m gunicorn webapp.wsgi:application --access-logfile gunicornaccess.log -w 3 -b 127.0.0.1:8089 --capture-output
         
 - **Dumping error log in a file:**
 
-        $
+        $ python3.9 -m gunicorn webapp.wsgi:application --error-logfile gunicornerror.log -w 3 -b 127.0.0.1:8089 --capture-output
 
+***Note: All snapshots related to Maven are in [2. Gunicorn](/2.%20Gunicorn/).***
